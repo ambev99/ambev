@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribuidora de Bebidas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Distribuidora de Bebidas</h1>
+            <nav>
+                <ul>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- BANNER -->
+    <section class="banner">
+        <div class="banner-content">
+            <h2>Bem-vindo à nossa distribuidora</h2>
+            <p>Os melhores preços em bebidas!</p>
+            <a href="#produtos" class="btn btn-primary">Ver Produtos</a>
+        </div>
+    </section>
+
+    <!-- PRODUTOS -->
+    <section id="produtos" class="section-produtos">
+        <h2>Nossos Produtos</h2>
+        <div id="produtos-container" class="produtos-container">
+            <!-- Os produtos serão carregados pelo script.js -->
+        </div>
+    </section>
+
+    <!-- CARRINHO -->
+    <section class="section-contato">
+        <h2>Seu Carrinho</h2>
+        <div id="carrinho-container"></div>
+        <p id="total"></p>
+
+        <div class="dados-cliente">
+            <input type="text" id="nomeCliente" placeholder="Seu nome completo">
+            <input type="text" id="enderecoCliente" placeholder="Endereço de entrega">
+        </div>
+
+        <button id="btn-pix" class="btn btn-whatsapp" style="display:none;">Ver PIX</button>
+        <button id="btn-whatsapp" class="btn btn-primary" style="display:none;">Finalizar no WhatsApp</button>
+
+        <!-- Modal PIX -->
+        <div id="pix-modal" class="pix-modal">
+            <div class="pix-modal-content">
+                <span id="close-pix" class="close">&times;</span>
+                <h3>Pagamento via PIX</h3>
+                <p>Escaneie o QR Code abaixo ou copie a chave:</p>
+                <img src="img/qrcode-pix.png" alt="QR Code PIX" width="200">
+                <p><strong>Chave PIX:</strong> SEUPIX@EXEMPLO.COM</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="section-sobre">
+        <h2>Sobre Nós</h2>
+        <p>Distribuímos bebidas de qualidade com entrega rápida e preços acessíveis. Nosso objetivo é atender clientes com confiança e agilidade.</p>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="section-contato">
+        <h2>Contato</h2>
+        <form>
+            <input type="text" placeholder="Seu nome" required>
+            <input type="email" placeholder="Seu email" required>
+            <textarea placeholder="Mensagem" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Distribuidora de Bebidas</p>
+    </footer>
+
+    <!-- Botão fixo WhatsApp -->
+    <a href="https://wa.me/5511980946705" target="_blank" class="whatsapp-float">
+        <img src="img/whatsapp.png" alt="WhatsApp">
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

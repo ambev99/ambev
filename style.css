@@ -1,0 +1,283 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+/* Header */
+header {
+    background-color: #FFD700;
+    padding: 20px 0;
+}
+
+.header-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #000;
+}
+
+/* Banner */
+.banner {
+    background: url('img/banner-bebidas.jpg') center/cover no-repeat;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+
+.banner-content {
+    background-color: rgba(0,0,0,0.5);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.banner-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.banner-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #FFD700;
+    color: #333;
+}
+
+.btn-whatsapp {
+    background-color: #25D366;
+    color: #fff;
+}
+
+/* Produtos */
+.section-produtos {
+    padding: 40px 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section-produtos h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.produtos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.produto-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.produto-card img {
+    max-width: 150px;
+    margin-bottom: 15px;
+}
+
+.produto-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.produto-card p {
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.produto-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Carrinho */
+#carrinho-container .carrinho-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.carrinho-item button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.carrinho-item button:hover {
+    background-color: #d32f2f;
+}
+
+/* Sobre e Contato */
+.section-sobre, .section-contato {
+    background-color: #fff;
+    padding: 40px 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section-sobre h2, .section-contato h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.section-sobre p, .section-contato form {
+    font-size: 1.1rem;
+    text-align: center;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+/* Botão fixo WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    transition: transform 0.3s;
+}
+
+.whatsapp-float img {
+    width: 50px;
+    height: 50px;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+/* Modal PIX */
+.pix-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7);
+    align-items: center;
+    justify-content: center;
+}
+.pix-modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+}
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Dados do cliente */
+.dados-cliente {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: 15px auto;
+}
+.dados-cliente input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .produtos-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .banner {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    header .header-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .banner-content h2 {
+        font-size: 1.8rem;
+    }
+    .banner-content p {
+        font-size: 1rem;
+    }
+}
+
+
+
+
