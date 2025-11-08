@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- HEADER -->
     <header>
         <div class="header-container">
             <h1>Distribuidora de Bebidas</h1>
@@ -32,23 +33,27 @@
     <!-- PRODUTOS -->
     <section id="produtos" class="section-produtos">
         <h2>Nossos Produtos</h2>
-        <div id="produtos-container" class="produtos-container">
-            <!-- Os produtos serão carregados pelo script.js -->
+        <div id="produtos-container" class="produtos-container scroll-horizontal">
+            <!-- Produtos carregados pelo script.js -->
         </div>
     </section>
 
     <!-- CARRINHO -->
-    <section class="section-contato">
+    <section class="section-contato carrinho-section">
         <h2>Seu Carrinho</h2>
-        <div id="carrinho-container"></div>
-        <p id="total"></p>
-
-        <div class="dados-cliente">
-            <input type="text" id="nomeCliente" placeholder="Seu nome completo">
-            <input type="text" id="enderecoCliente" placeholder="Endereço de entrega">
+        <div class="carrinho-box">
+            <div id="carrinho-container"></div>
+            <p id="total"></p>
         </div>
 
-        <!-- Botão Finalizar no WhatsApp -->
+        <div class="dados-cliente-box">
+            <label for="nomeCliente">Nome Completo</label>
+            <input type="text" id="nomeCliente" placeholder="Digite seu nome completo">
+
+            <label for="enderecoCliente">Endereço de Entrega</label>
+            <input type="text" id="enderecoCliente" placeholder="Digite seu endereço">
+        </div>
+
         <button id="btn-whatsapp" class="btn btn-primary" style="display:none;">Finalizar no WhatsApp</button>
     </section>
 
@@ -82,6 +87,10 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
 
 
 

@@ -18,31 +18,55 @@ document.addEventListener("DOMContentLoaded", () => {
     let carrinho = [];
     const produtosContainer = document.getElementById("produtos-container");
 
-    // Exibir produtos dinamicamente
     produtos.forEach(produto => {
         const card = document.createElement("div");
         card.classList.add("produto-card");
         card.innerHTML = `
             <img src="${produto.img}" alt="${produto.nome}">
             <h3>${produto.nome}</h3>
-            <p><strong>R$ ${produto.preco.toFixed(2)}</strong></p>
-            <input type="number" min="1" value="1" id="quantidade-${produto.id}" style="width:60px;">
+            <p>R$ ${produto.preco.toFixed(2)}</p>
+            <input type="number" min="1" value="1" id="quantidade-${produto.id}">
             <button class="btn btn-primary" onclick="adicionarCarrinho(${produto.id})">Adicionar ao Carrinho</button>
         `;
         produtosContainer.appendChild(card);
     });
+
+    const badge = document.createElement("div");
+    badge.id = "carrinho-badge";
+    badge.style.cssText = `
+        position: fixed; bottom: 20px; right: 20px;
+        background: #1e90ff; color: #fff; padding: 10px 15px;
+        border-radius: 50px; cursor: pointer; z-index: 1000;
+        font-weight: bold;
+    `;
+    badge.textContent = "🛒 0";
+    document.body.appendChild(badge);
+    badge.addEventListener("click", () => {
+        document.getElementById("carrinho-container").scrollIntoView({behavior: "smooth"});
+    });
+
+    const mensagemDiv = document.createElement("div");
+    mensagemDiv.id = "msg-adicionado";
+    mensagemDiv.style.cssText = `
+        position: fixed; bottom: 80px; right: 20px;
+        background: #007acc; color: #fff; padding: 10px 15px;
+        border-radius: 8px; display: none; z-index: 1000; font-weight: bold;
+    `;
+    document.body.appendChild(mensagemDiv);
 
     window.adicionarCarrinho = function(id) {
         const produto = produtos.find(p => p.id === id);
         const quantidade = parseInt(document.getElementById(`quantidade-${id}`).value);
         const itemExistente = carrinho.find(item => item.id === id);
 
-        if (itemExistente) {
-            itemExistente.quantidade += quantidade;
-        } else {
-            carrinho.push({...produto, quantidade});
-        }
+        if (itemExistente) itemExistente.quantidade += quantidade;
+        else carrinho.push({...produto, quantidade});
+
         atualizarCarrinho();
+
+        mensagemDiv.textContent = `${produto.nome} adicionado ao carrinho!`;
+        mensagemDiv.style.display = "block";
+        setTimeout(() => mensagemDiv.style.display = "none", 2000);
     };
 
     window.removerCarrinho = function(index) {
@@ -59,59 +83,37 @@ document.addEventListener("DOMContentLoaded", () => {
             container.innerHTML = "<p>Seu carrinho está vazio.</p>";
             document.getElementById("btn-whatsapp").style.display = "none";
             document.getElementById("total").textContent = "";
-            return;
+        } else {
+            carrinho.forEach((item, index) => {
+                const subtotal = item.preco * item.quantidade;
+                total += subtotal;
+
+                const div = document.createElement("div");
+                div.classList.add("carrinho-item");
+                div.innerHTML = `
+                    <span>${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade} = <strong>R$ ${subtotal.toFixed(2)}</strong></span>
+                    <button onclick="removerCarrinho(${index})">Remover</button>
+                `;
+                container.appendChild(div);
+            });
+            document.getElementById("total").textContent = "💰 Total: R$ " + total.toFixed(2);
+            document.getElementById("btn-whatsapp").style.display = "inline-block";
         }
 
-        carrinho.forEach((item, index) => {
-            const subtotal = item.preco * item.quantidade;
-            total += subtotal;
-
-            const div = document.createElement("div");
-            div.classList.add("carrinho-item");
-            div.innerHTML = `
-                <span>${item.nome} - R$ ${item.preco.toFixed(2)} x ${item.quantidade} = <strong>R$ ${subtotal.toFixed(2)}</strong></span>
-                <button onclick="removerCarrinho(${index})">Remover</button>
-            `;
-            container.appendChild(div);
-        });
-
-        document.getElementById("total").textContent = "💰 Total: R$ " + total.toFixed(2);
-        document.getElementById("btn-whatsapp").style.display = "inline-block";
+        const quantidadeTotal = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+       
+        badge.textContent = `🛒 ${quantidadeTotal}`;
     }
 
-    // Enviar via WhatsApp
     document.getElementById("btn-whatsapp").addEventListener("click", () => {
-        const nome = document.getElementById("nomeCliente").value.trim();
-        const endereco = document.getElementById("enderecoCliente").value.trim();
-
-        if (carrinho.length === 0) {
-            alert("Seu carrinho está vazio!");
-            return;
-        }
-        if (!nome || !endereco) {
-            alert("Por favor, preencha seu nome e endereço.");
-            return;
-        }
-
-        let mensagem = `🛒 *Pedido de Bebidas*%0A`;
+        if (carrinho.length === 0) return;
+        let mensagem = "Olá, gostaria de fazer o seguinte pedido:%0A";
         carrinho.forEach(item => {
-            mensagem += `• ${item.nome} x ${item.quantidade} = R$ ${(item.preco * item.quantidade).toFixed(2)}%0A`;
+            mensagem += `- ${item.nome} x ${item.quantidade}%0A`;
         });
-        mensagem += `%0A💰 Total: ${document.getElementById("total").textContent}%0A`;
-        mensagem += `%0A👤 *Nome:* ${nome}%0A🏠 *Endereço:* ${endereco}%0A`;
-
-        const numero = "5511980946705"; // SEU NÚMERO CORRETO
-        const url = `https://wa.me/${numero}?text=${mensagem}`;
+        const total = carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
+        mensagem += `%0ATotal: R$ ${total.toFixed(2)}`;
+        const url = `https://wa.me/5511980946705?text=${mensagem}`;
         window.open(url, "_blank");
     });
-});
-
-
-
-
-
-
-
-
-
-
+}); 
