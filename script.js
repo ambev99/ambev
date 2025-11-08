@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {id:10, nome:"Stella Artois", preco:4.99, img:"img/stella.jpg"},
         {id:11, nome:"Spaten", preco:3.29, img:"img/spaten.jpg"},
         {id:12, nome:"Heineken Zero", preco:3.99, img:"img/heineken-zero.jpg"},
-        {id:13, nome:"corona", preco:5.19, img:"img/corona.jpg"}
+        {id:13, nome:"Corona", preco:5.19, img:"img/corona.jpg"}
     ];
 
     let carrinho = [];
@@ -57,7 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (carrinho.length === 0) {
             container.innerHTML = "<p>Seu carrinho está vazio.</p>";
-            document.getElementById("btn-pix").style.display = "none";
             document.getElementById("btn-whatsapp").style.display = "none";
             document.getElementById("total").textContent = "";
             return;
@@ -77,24 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         document.getElementById("total").textContent = "💰 Total: R$ " + total.toFixed(2);
-        document.getElementById("btn-pix").style.display = "inline-block";
         document.getElementById("btn-whatsapp").style.display = "inline-block";
     }
-
-    // Modal PIX
-    const pixModal = document.getElementById("pix-modal");
-    const closePix = document.getElementById("close-pix");
-
-    document.getElementById("btn-pix").addEventListener("click", () => {
-        if (carrinho.length === 0) {
-            alert("Seu carrinho está vazio!");
-            return;
-        }
-        pixModal.style.display = "flex";
-    });
-
-    closePix.addEventListener("click", () => pixModal.style.display = "none");
-    window.onclick = e => { if (e.target === pixModal) pixModal.style.display = "none"; };
 
     // Enviar via WhatsApp
     document.getElementById("btn-whatsapp").addEventListener("click", () => {
@@ -117,11 +100,12 @@ document.addEventListener("DOMContentLoaded", () => {
         mensagem += `%0A💰 Total: ${document.getElementById("total").textContent}%0A`;
         mensagem += `%0A👤 *Nome:* ${nome}%0A🏠 *Endereço:* ${endereco}%0A`;
 
-        const numero = "5591999999999"; // Troque pelo seu número real
+        const numero = "5511980946705"; // SEU NÚMERO CORRETO
         const url = `https://wa.me/${numero}?text=${mensagem}`;
         window.open(url, "_blank");
     });
 });
+
 
 
 
